@@ -1,0 +1,61 @@
+package com.xiaobo.collegedesign.internetbooks.Activity;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import com.xiaobo.collegedesign.internetbooks.Model.Entity.BookInfo;
+import com.xiaobo.collegedesign.internetbooks.R;
+import com.xiaobo.collegedesign.internetbooks.Utils.ToastUtils;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
+import io.realm.Realm;
+
+public class BookInfoActivity extends Activity {
+
+    @InjectView(R.id.book_info_book_name) TextView book_info_book_name;
+    @InjectView(R.id.book_info_book_author) TextView book_info_book_author;
+    @InjectView(R.id.book_info_book_date) TextView book_info_book_date;
+    @InjectView(R.id.book_info_book_describe) TextView book_info_book_describe;
+
+    @OnClick(R.id.book_info_read) void book_info_read() {
+        Intent intent = new Intent();
+        intent.setClass(this, ReadBookActivity.class);
+        intent.putExtra("book_name", book_name);
+        startActivity(intent);
+        finish();
+    }
+    @OnClick(R.id.book_info_history) void book_info_history() {
+        ToastUtils.setToast(this, "书签");
+    }
+    @OnClick(R.id.book_info_back) void book_info_back() {
+        ToastUtils.setToast(this, "后退");
+        finish();
+    }
+
+    private String book_name;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_book_info);
+        ButterKnife.inject(this);
+
+        book_name = getIntent().getStringExtra("book_name");
+        if (!"".equals(book_name)) {
+            setViews();
+        }
+    }
+
+    private void setViews() {
+        BookInfo bookInfo = Realm.getInstance(this.getApplicationContext()).where(BookInfo.class).equalTo("book_name", book_name).findFirst();
+
+        book_info_book_name.setText(bookInfo.getBook_name());
+        book_info_book_author.setText(bookInfo.getBook_author());
+        book_info_book_date.setText(bookInfo.getBook_date());
+        book_info_book_describe.setText(bookInfo.getBook_describe());
+    }
+}

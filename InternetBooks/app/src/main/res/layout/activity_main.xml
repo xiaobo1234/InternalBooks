@@ -1,0 +1,162 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="com.xiaobo.collegedesign.internetbooks.Activity.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/main_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="0"
+        android:background="#52CD99">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:text="书架"/>
+
+        <RelativeLayout
+            android:id="@+id/main_user_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/backgrounnd_color_transparent_click"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <ImageView
+                android:id="@+id/main_user_enter_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_launcher"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    <GridView
+        android:id="@+id/main_books_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/main_title"
+        android:layout_above="@+id/main_manage_books"
+        android:padding="9dp"
+        android:listSelector="@drawable/backgrounnd_book_white_click"
+        android:horizontalSpacing="6dp"
+        android:verticalSpacing="6dp"
+        android:layout_weight="1"
+        android:numColumns="3"/>
+
+    <RelativeLayout
+        android:id="@+id/main_manage_books"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="10dp"
+        android:background="@drawable/backgrounnd_book_white_click">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#aaaaaa"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="管理书籍"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/main_manage_hint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="#88000000">
+
+        <LinearLayout
+            android:id="@+id/main_manage_hint_inside_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/main_manage_search_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/backgrounnd_color_black_click">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:text="搜索书籍"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#aaaaaa"/>
+
+            <RelativeLayout
+                android:id="@+id/main_manage_add_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/backgrounnd_color_black_click">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:text="添加书籍"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#aaaaaa"/>
+
+            <RelativeLayout
+                android:id="@+id/main_manage_delete_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/backgrounnd_color_black_click">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:text="删除书籍"/>
+
+            </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+</RelativeLayout>
