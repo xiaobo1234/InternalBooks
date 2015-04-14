@@ -217,8 +217,6 @@ public class BookPageFactory {
     }
 
     private boolean isTargetPage(long targetPlace) {
-        if ((targetPlace >= m_mbBufBegin - 10 * 8 && targetPlace <= m_mbBufBegin + 10 * 8)
-                || (targetPlace >= m_mbBufEnd - 10 * 8 && targetPlace <= m_mbBufEnd + 10 * 8)) {
             return true;
         }
         return false;
