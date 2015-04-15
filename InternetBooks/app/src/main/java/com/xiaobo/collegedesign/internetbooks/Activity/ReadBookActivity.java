@@ -24,6 +24,7 @@ import com.xiaobo.collegedesign.internetbooks.Views.BookPageFactory;
 import com.xiaobo.collegedesign.internetbooks.Views.PageWidget;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class ReadBookActivity extends Activity {
     /** Called when the activity is first created. */
@@ -137,6 +138,10 @@ public class ReadBookActivity extends Activity {
         readInfo.setTarget_place(pagefactory.getRead_place());
         ATLog.e("阅读位置", "pagefactory.getRead_place==" + pagefactory.getRead_place() + "pagefactory.getM_mbBufLen==" + pagefactory.getM_mbBufLen());
         realm.beginTransaction();
+        RealmResults realmResults = realm.where(ReadInfo.class).findAll();
+        if (null != realmResults && realmResults.size() > 0) {
+            realmResults.clear();
+        }
         realm.copyToRealm(readInfo);
         realm.commitTransaction();
     }
