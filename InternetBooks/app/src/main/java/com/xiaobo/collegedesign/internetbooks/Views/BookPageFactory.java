@@ -16,6 +16,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 
+import com.xiaobo.collegedesign.internetbooks.Utils.ATLog;
 import com.xiaobo.collegedesign.internetbooks.Utils.DensityUtil;
 
 public class BookPageFactory {
@@ -27,7 +28,6 @@ public class BookPageFactory {
     private int m_mbBufEnd = 0;
 //    private String m_strCharsetName = "GBK";
     private String m_strCharsetName = "UTF-8";
-    private String m_currentString;
     private Bitmap m_book_bg = null;
     private int mWidth;
     private int mHeight;
@@ -40,7 +40,7 @@ public class BookPageFactory {
     private int marginWidth = 15; // 左右与边缘的距离
     private int marginHeight = 20; // 上下与边缘的距离
 
-    private int mLineCount; // 每页可以显示的行数
+    private int mLineCount, mFontCount; // 每页可以显示的行数、字数
     private float mVisibleHeight; // 绘制内容的宽
     private float mVisibleWidth; // 绘制内容的宽
     private boolean m_isfirstPage,m_islastPage;
@@ -60,6 +60,7 @@ public class BookPageFactory {
         mVisibleWidth = mWidth - marginWidth * 2;
         mVisibleHeight = mHeight - marginHeight * 2;
         mLineCount = (int) (mVisibleHeight / m_fontSize); // 可显示的行数
+        mFontCount = (int) (mVisibleWidth / m_fontSize) * mLineCount; // 可显示的字数
     }
 
     public void openbook(String strFilePath) throws IOException {
@@ -207,18 +208,19 @@ public class BookPageFactory {
 
     public void setPageTo(long targetPlace, Canvas c) {
         if (targetPlace > 0) {
+            ATLog.e("目标", "targetPlace -- " + targetPlace + "m_mbBufEnd -- " + m_mbBufEnd);
             while (!isTargetPage(targetPlace) && m_mbBufEnd < m_mbBufLen) {
                 m_lines.clear();
                 m_lines = pageDown();
             }
-
-            onDraw(c);
         }
+
+        onDraw(c);
     }
 
     private boolean isTargetPage(long targetPlace) {
-        if ((targetPlace >= m_mbBufBegin - 1000 && targetPlace <= m_mbBufBegin + 1000)
-                || (targetPlace >= m_mbBufEnd - 1000 && targetPlace <= m_mbBufEnd + 1000)) {
+        if ((targetPlace >= m_mbBufEnd - mFontCount * 2 && targetPlace <= m_mbBufEnd + mFontCount * 2)) {
+            ATLog.e("一页最多字数", "mFontCount -- " + mFontCount);
             return true;
         }
         return false;
@@ -323,6 +325,9 @@ public class BookPageFactory {
     }
 
     public long getRead_place() {
-        return m_mbBufBegin;
+        return m_mbBufEnd;
+    }
+    public long getM_mbBufLen() {
+        return m_mbBufLen;
     }
 }

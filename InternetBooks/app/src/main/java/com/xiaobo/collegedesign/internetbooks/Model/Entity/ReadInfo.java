@@ -9,7 +9,7 @@ public class ReadInfo extends RealmObject {
 
     private String book_name;
 
-    private String book_id;
+    private int book_id;
 
     private long target_place;
 
@@ -21,11 +21,11 @@ public class ReadInfo extends RealmObject {
         this.book_name = book_name;
     }
 
-    public String getBook_id() {
+    public int getBook_id() {
         return book_id;
     }
 
-    public void setBook_id(String book_id) {
+    public void setBook_id(int book_id) {
         this.book_id = book_id;
     }
 

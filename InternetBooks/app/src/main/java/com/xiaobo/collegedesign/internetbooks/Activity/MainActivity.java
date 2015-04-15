@@ -17,7 +17,6 @@ import com.xiaobo.collegedesign.internetbooks.Adapters.MainBookAdapter;
 import com.xiaobo.collegedesign.internetbooks.Model.Entity.BookInfo;
 import com.xiaobo.collegedesign.internetbooks.R;
 import com.xiaobo.collegedesign.internetbooks.Utils.FileUtils;
-import com.xiaobo.collegedesign.internetbooks.Utils.ToastUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -63,20 +62,22 @@ public class MainActivity extends Activity {
         ButterKnife.inject(this);
 
         realm = Realm.getInstance(this.getApplicationContext());
-//        BookInfo bookInfo = new BookInfo();
-//        bookInfo.setBook_name("论语");
-//        bookInfo.setBook_author("孔子弟子及再传弟子");
-//        bookInfo.setBook_date("春秋时期");
-//        bookInfo.setBook_describe("语录体散文集，主要记载孔子及其弟子的言行。");
-//        bookInfo.setBook_path(FileUtils.getAppFolderPath(this.getApplicationContext()) + File.separator + "TheAnalectsofConfucius.txt");
-//        realm.beginTransaction();
-//        realm.copyToRealm(bookInfo);
-//        realm.commitTransaction();
-//        try {
-//            FileUtils.saveFile(this.getResources().getAssets().open("TheAnalectsofConfucius.txt"), FileUtils.getAppFolderPath(this.getApplicationContext()) + File.separator + "TheAnalectsofConfucius.txt");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        if (null == realm.where(BookInfo.class).findAll() || realm.where(BookInfo.class).findAll().size() <= 0) {
+            BookInfo bookInfo = new BookInfo();
+            bookInfo.setBook_name("论语");
+            bookInfo.setBook_author("孔子弟子及再传弟子");
+            bookInfo.setBook_date("春秋时期");
+            bookInfo.setBook_describe("语录体散文集，主要记载孔子及其弟子的言行。");
+            bookInfo.setBook_path(FileUtils.getAppFolderPath(this.getApplicationContext()) + File.separator + "TheAnalectsofConfucius.txt");
+            realm.beginTransaction();
+            realm.copyToRealm(bookInfo);
+            realm.commitTransaction();
+            try {
+                FileUtils.saveFile(this.getResources().getAssets().open("TheAnalectsofConfucius.txt"), FileUtils.getAppFolderPath(this.getApplicationContext()) + File.separator + "TheAnalectsofConfucius.txt");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         //设置列表
         setBooks();
@@ -122,6 +123,7 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, BookInfoActivity.class);
                 intent.putExtra("book_name", list.get(position).getBook_name());
+                intent.putExtra("book_id", list.get(position).getBook_id());
                 startActivity(intent);
             }
         });

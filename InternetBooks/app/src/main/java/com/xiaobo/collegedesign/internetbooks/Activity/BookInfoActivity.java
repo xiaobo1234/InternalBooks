@@ -25,6 +25,7 @@ public class BookInfoActivity extends Activity {
         Intent intent = new Intent();
         intent.setClass(this, ReadBookActivity.class);
         intent.putExtra("book_name", book_name);
+        intent.putExtra("book_id", book_id);
         startActivity(intent);
         finish();
     }
@@ -32,11 +33,12 @@ public class BookInfoActivity extends Activity {
         ToastUtils.setToast(this, "书签");
     }
     @OnClick(R.id.book_info_back) void book_info_back() {
-        ToastUtils.setToast(this, "后退");
+//        ToastUtils.setToast(this, "后退");
         finish();
     }
 
     private String book_name;
+    private int book_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class BookInfoActivity extends Activity {
         ButterKnife.inject(this);
 
         book_name = getIntent().getStringExtra("book_name");
+        book_id = getIntent().getIntExtra("book_id", 0);
         if (!"".equals(book_name)) {
             setViews();
         }
