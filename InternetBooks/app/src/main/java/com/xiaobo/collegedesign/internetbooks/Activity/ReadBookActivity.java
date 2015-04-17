@@ -67,7 +67,7 @@ public class ReadBookActivity extends Activity {
         } catch (IOException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
-            ToastUtils.setToast(this, "电子书不存在,请将《test.txt》放在SD卡根目录下");
+            ToastUtils.setToast(this, "该电子书不存在,请先下载");
         }
 
         mPageWidget.setOnTouchListener(new OnTouchListener() {
@@ -119,13 +119,16 @@ public class ReadBookActivity extends Activity {
     protected void onResume() {
         super.onResume();
         if (null != Realm.getInstance(this.getApplicationContext()).where(ReadInfo.class).equalTo("book_name", getIntent().getStringExtra("book_name")).findFirst()) {
-            List<ReadInfo> readInfos = realm.where(ReadInfo.class).equalTo("book_name", getIntent().getStringExtra("book_name")).equalTo("book_id", getIntent().getIntExtra("book_id", 0)).findAll();
+            List<ReadInfo> readInfos = realm.where(ReadInfo.class)
+                    .equalTo("book_name", getIntent().getStringExtra("book_name"))
+                    .equalTo("book_id", getIntent().getIntExtra("book_id", 0))
+                    .equalTo("bookmark_name", getIntent().getIntExtra("book_id", 0)).findAll();
             ReadInfo readInfo = null;
             if (null != readInfos && readInfos.size() > 0) {
                 readInfo = readInfos.get(readInfos.size() - 1);
             }
-            pagefactory.setPageTo((null != readInfo ? readInfo.getTarget_place() : 0), mCurPageCanvas);
-            ATLog.e("阅读位置", "readInfo.getTarget_place==" + (null != readInfo ? readInfo.getTarget_place() : 0));
+            pagefactory.setPageTo((null != readInfo ? readInfo.getBookmark_place() : 0), mCurPageCanvas);
+            ATLog.e("阅读位置", "readInfo.getTarget_place==" + (null != readInfo ? readInfo.getBookmark_place() : 0));
         }
     }
 
@@ -135,7 +138,7 @@ public class ReadBookActivity extends Activity {
         ReadInfo readInfo = new ReadInfo();
         readInfo.setBook_id(bookInfo.getBook_id());
         readInfo.setBook_name(bookInfo.getBook_name());
-        readInfo.setTarget_place(pagefactory.getRead_place());
+        readInfo.setBookmark_place(pagefactory.getRead_place());
         ATLog.e("阅读位置", "pagefactory.getRead_place==" + pagefactory.getRead_place() + "pagefactory.getM_mbBufLen==" + pagefactory.getM_mbBufLen());
         realm.beginTransaction();
         RealmResults realmResults = realm.where(ReadInfo.class).findAll();

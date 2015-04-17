@@ -324,7 +324,7 @@ public class BookPageFactory {
         return m_islastPage;
     }
 
-    public long getRead_place() {
+    public int getRead_place() {
         return m_mbBufEnd;
     }
     public long getM_mbBufLen() {

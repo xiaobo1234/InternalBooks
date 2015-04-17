@@ -11,7 +11,9 @@ public class ReadInfo extends RealmObject {
 
     private int book_id;
 
-    private long target_place;
+    private int bookmark_place;
+
+    private String bookmark_name;
 
     public String getBook_name() {
         return book_name;
@@ -29,11 +31,19 @@ public class ReadInfo extends RealmObject {
         this.book_id = book_id;
     }
 
-    public long getTarget_place() {
-        return target_place;
+    public int getBookmark_place() {
+        return bookmark_place;
     }
 
-    public void setTarget_place(long target_place) {
-        this.target_place = target_place;
+    public void setBookmark_place(int bookmark_place) {
+        this.bookmark_place = bookmark_place;
+    }
+
+    public String getBookmark_name() {
+        return bookmark_name;
+    }
+
+    public void setBookmark_name(String bookmark_name) {
+        this.bookmark_name = bookmark_name;
     }
 }

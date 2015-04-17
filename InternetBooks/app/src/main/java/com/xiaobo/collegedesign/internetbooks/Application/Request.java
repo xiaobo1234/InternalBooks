@@ -44,7 +44,7 @@ import retrofit.mime.TypedOutput;
  */
 public class Request {
 
-    public final static String apiServerUrl = "http://jichedang.sohuapps.com/api/v1";
+    public final static String apiServerUrl = "http://back-end.sohuapps.com/v1";
 //    public final static String apiServerUrl = "http://testjichedang.sohuapps.com/api/v1";
 //    public final static String apiServerUrl = "http://10.0.0.9:9292/api/v1";
 
