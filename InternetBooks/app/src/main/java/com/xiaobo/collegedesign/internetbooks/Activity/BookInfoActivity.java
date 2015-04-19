@@ -26,14 +26,17 @@ public class BookInfoActivity extends Activity {
         intent.setClass(this, ReadBookActivity.class);
         intent.putExtra("book_name", book_name);
         intent.putExtra("book_id", book_id);
+        intent.putExtra("bookmark_name", "最新阅读书签");
         startActivity(intent);
-        finish();
     }
     @OnClick(R.id.book_info_history) void book_info_history() {
-        ToastUtils.setToast(this, "书签");
+        Intent intent = new Intent();
+        intent.setClass(this, ReadInfoActivity.class);
+        intent.putExtra("book_name", book_name);
+        intent.putExtra("book_id", book_id);
+        startActivity(intent);
     }
     @OnClick(R.id.book_info_back) void book_info_back() {
-//        ToastUtils.setToast(this, "后退");
         finish();
     }
 

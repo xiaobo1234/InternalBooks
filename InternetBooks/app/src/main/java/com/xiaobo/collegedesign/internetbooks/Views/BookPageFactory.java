@@ -210,6 +210,7 @@ public class BookPageFactory {
         if (targetPlace > 0) {
             ATLog.e("目标", "targetPlace -- " + targetPlace + "m_mbBufEnd -- " + m_mbBufEnd);
             while (!isTargetPage(targetPlace) && m_mbBufEnd < m_mbBufLen) {
+                m_mbBufBegin = m_mbBufEnd;
                 m_lines.clear();
                 m_lines = pageDown();
             }

@@ -15,8 +15,10 @@ import android.widget.RelativeLayout;
 
 import com.xiaobo.collegedesign.internetbooks.Adapters.MainBookAdapter;
 import com.xiaobo.collegedesign.internetbooks.Model.Entity.BookInfo;
+import com.xiaobo.collegedesign.internetbooks.Model.Entity.ReadInfo;
 import com.xiaobo.collegedesign.internetbooks.R;
 import com.xiaobo.collegedesign.internetbooks.Utils.FileUtils;
+import com.xiaobo.collegedesign.internetbooks.Utils.ToastUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,24 +38,39 @@ public class MainActivity extends Activity {
 
     @InjectView(R.id.main_manage_hint_layout) RelativeLayout main_manage_hint_layout;
     @InjectView(R.id.main_manage_hint_inside_layout) LinearLayout main_manage_hint_inside_layout;
+    @InjectView(R.id.book_delete_hint_layout) RelativeLayout book_delete_hint_layout;
+    @InjectView(R.id.book_delete_hint_inside_layout) LinearLayout book_delete_hint_inside_layout;
 
     @OnClick(R.id.main_user_enter) void main_user_enter() {
-
+        //TODO 登录事宜
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
-
+    @OnClick(R.id.main_manage_hint_layout) void main_manage_hint_layout() {
+        hideManageHint();
+    }
     @OnClick(R.id.main_manage_search_book) void main_manage_search_book() {
-        hideHint();
+        hideManageHint();
     }
     @OnClick(R.id.main_manage_add_book) void main_manage_add_book() {
-        hideHint();
+        hideManageHint();
     }
-    @OnClick(R.id.main_manage_delete_book) void main_manage_delete_book() {
-        hideHint();
+    @OnClick(R.id.book_delete_hint_layout) void book_delete_hint_layout() {
+        hideDeleteHint();
+    }
+    @OnClick(R.id.book_delete_sure) void book_delete_sure() {
+        deleteBook();
+        hideDeleteHint();
+    }
+    @OnClick(R.id.book_delete_cancel) void book_delete_cancel() {
+        hideDeleteHint();
     }
 
     private MainBookAdapter mainBookAdapter;
     private List<BookInfo> list;
     private Realm realm;
+    private int selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +81,7 @@ public class MainActivity extends Activity {
         realm = Realm.getInstance(this.getApplicationContext());
         if (null == realm.where(BookInfo.class).findAll() || realm.where(BookInfo.class).findAll().size() <= 0) {
             BookInfo bookInfo = new BookInfo();
+            bookInfo.setBook_id(99999999);
             bookInfo.setBook_name("论语");
             bookInfo.setBook_author("孔子弟子及再传弟子");
             bookInfo.setBook_date("春秋时期");
@@ -90,15 +108,6 @@ public class MainActivity extends Activity {
                 showHint();
             }
         });
-
-        main_manage_hint_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (main_manage_hint_layout.getVisibility() == View.VISIBLE) {
-                    hideHint();
-                }
-            }
-        });
     }
 
     @Override
@@ -110,7 +119,11 @@ public class MainActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (KeyEvent.KEYCODE_BACK == keyCode && main_manage_hint_layout.getVisibility() == View.VISIBLE) {
-            hideHint();
+            hideManageHint();
+            return true;
+        }
+        if (KeyEvent.KEYCODE_BACK == keyCode && book_delete_hint_layout.getVisibility() == View.VISIBLE) {
+            hideDeleteHint();
             return true;
         }
         return super.onKeyDown(keyCode, event);
@@ -127,20 +140,55 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+        main_books_grid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if (list.get(position).getBook_id() == 99999999 && list.get(position).getBook_name().equals("论语")) {
+                    ToastUtils.setToast(MainActivity.this, "对不起，此书内置，不能删除");
+                    return true;
+                }
+                selected = position;
+                book_delete_hint_layout.setVisibility(View.VISIBLE);
+                book_delete_hint_inside_layout.setVisibility(View.VISIBLE);
+                book_delete_hint_inside_layout.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_in));
+                return true;
+            }
+        });
     }
 
-    //显示隐藏按钮
+    //显示添加按钮
     private void showHint() {
         main_manage_hint_layout.setVisibility(View.VISIBLE);
         Animation in = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_in);
         main_manage_hint_inside_layout.startAnimation(in);
     }
 
-    //收回隐藏按钮
-    private void hideHint() {
+    //收回添加按钮
+    private void hideManageHint() {
         Animation out = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_out);
         main_manage_hint_inside_layout.startAnimation(out);
         main_manage_hint_layout.setVisibility(View.GONE);
+    }
+
+    //收回删除按钮
+    private void hideDeleteHint() {
+        Animation out = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_out);
+        out.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                book_delete_hint_inside_layout.setVisibility(View.GONE);
+                book_delete_hint_layout.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
+        book_delete_hint_inside_layout.startAnimation(out);
     }
 
     /**
@@ -157,5 +205,20 @@ public class MainActivity extends Activity {
             list.addAll(realm.where(BookInfo.class).findAll());
             mainBookAdapter.notifyDataSetChanged();
         }
+    }
+
+    private void deleteBook() {
+        realm.beginTransaction();
+        realm.where(BookInfo.class)
+                .equalTo("book_name", list.get(selected).getBook_name())
+                .equalTo("book_id", list.get(selected).getBook_id())
+                .findAll().clear();
+        realm.where(ReadInfo.class)
+                .equalTo("book_name", list.get(selected).getBook_name())
+                .equalTo("book_id", list.get(selected).getBook_id())
+                .findAll().clear();
+        realm.commitTransaction();
+
+        setBooks();
     }
 }

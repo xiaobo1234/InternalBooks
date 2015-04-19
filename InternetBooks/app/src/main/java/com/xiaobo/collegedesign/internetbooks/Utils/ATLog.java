@@ -11,7 +11,7 @@ public class ATLog {
 
 //    public static boolean isDebugging = ApplicationRunTime.getAppContext().getResources().getBoolean(R.bool.isDebug);
     public static boolean isDebugging = true;
-    private static final String TAG = "JiCheDang-------------";
+    private static final String TAG = "InternetBook-------------";
 
     public static void e(String tag, String message){
         if (!isDebugging) {

@@ -3,40 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context="com.xiaobo.collegedesign.internetbooks.Activity.BookInfoActivity">
+    tools:context="com.xiaobo.collegedesign.internetbooks.Activity.BookBuyActivity">
 
     <RelativeLayout
-    android:id="@+id/book_info_title"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_weight="0"
-    android:background="#52CD99">
+        android:id="@+id/book_buy_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="0"
+        android:background="#52CD99">
 
-    <ImageView
-        android:id="@+id/book_info_back"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:scaleType="center"
-        android:src="@drawable/back"
-        android:background="@drawable/backgrounnd_color_transparent_click"/>
+        <ImageView
+            android:id="@+id/book_buy_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:scaleType="center"
+            android:src="@drawable/back"
+            android:background="@drawable/backgrounnd_color_transparent_click"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="20sp"
-        android:textColor="@android:color/white"
-        android:text="书籍信息"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:text="书籍信息"/>
 
-</RelativeLayout>
+    </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/book_info_details"
+        android:id="@+id/book_buy_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/book_info_title"
+        android:layout_below="@id/book_buy_title"
         android:layout_marginTop="30dp"
         android:orientation="vertical">
 
@@ -57,7 +57,7 @@
                 android:textSize="18sp"/>
 
             <TextView
-                android:id="@+id/book_info_book_name"
+                android:id="@+id/book_buy_book_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="呵呵呵呵呵呵呵呵呵"
@@ -65,7 +65,7 @@
                 android:textSize="18sp"
                 android:singleLine="true"/>
 
-            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                 android:textSize="16sp"/>
 
             <TextView
-                android:id="@+id/book_info_book_author"
+                android:id="@+id/book_buy_book_author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="尼玛在等你"
@@ -92,7 +92,34 @@
                 android:textSize="16sp"
                 android:singleLine="true"/>
 
-            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="积分："
+                android:textColor="#333333"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/book_buy_book_prize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:singleLine="true"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,7 +138,7 @@
                 android:textSize="16sp"/>
 
             <TextView
-                android:id="@+id/book_info_book_date"
+                android:id="@+id/book_buy_book_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2015-4-1"
@@ -119,7 +146,7 @@
                 android:textSize="16sp"
                 android:singleLine="true"/>
 
-            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -138,26 +165,26 @@
                 android:textSize="16sp"/>
 
             <TextView
-                android:id="@+id/book_info_book_describe"
+                android:id="@+id/book_buy_book_describe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="这个是什么鬼什么鬼什么鬼什么鬼什么鬼什么鬼什么鬼"
                 android:textColor="#666666"
                 android:textSize="16sp"/>
 
-            </LinearLayout>
-
         </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/book_info_details"
+        android:layout_below="@id/book_buy_details"
         android:layout_marginTop="25dp"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/book_info_read"
+            android:id="@+id/book_buy_read"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -166,7 +193,7 @@
             android:paddingTop="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="30dp"
-            android:background="@drawable/backgrounnd_lightblue_click">
+            android:background="#999999">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -175,10 +202,10 @@
                 android:textSize="16sp"
                 android:textColor="@android:color/white"/>
 
-            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/book_info_history"
+            android:id="@+id/book_buy_download"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -192,12 +219,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="读取书签"
+                android:text="下载本书"
                 android:textSize="16sp"
                 android:textColor="@android:color/white"/>
 
-            </LinearLayout>
-
         </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

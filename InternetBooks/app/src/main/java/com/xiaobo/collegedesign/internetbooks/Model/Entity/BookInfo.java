@@ -24,8 +24,11 @@ public class BookInfo extends RealmObject {
     //大小
     private String book_size;
 
-    //大小
+    //路径
     private String book_path;
+
+    //价钱
+    private String book_prize;
 
     public int getBook_id() {
         return book_id;
@@ -81,5 +84,13 @@ public class BookInfo extends RealmObject {
 
     public void setBook_path(String book_path) {
         this.book_path = book_path;
+    }
+
+    public String getBook_prize() {
+        return book_prize;
+    }
+
+    public void setBook_prize(String book_prize) {
+        this.book_prize = book_prize;
     }
 }

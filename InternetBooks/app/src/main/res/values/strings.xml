@@ -7,5 +7,8 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_book_info">BookInfoActivity</string>
     <string name="title_activity_read_book">ReadBookActivity</string>
+    <string name="title_activity_read_info">ReadInfoActivity</string>
+    <string name="title_activity_login_register">LoginRegisterActivity</string>
+    <string name="title_activity_book_buy">BookBuyActivity</string>
 
 </resources>

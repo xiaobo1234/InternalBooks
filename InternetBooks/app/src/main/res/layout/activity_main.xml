@@ -26,15 +26,15 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:background="@drawable/backgrounnd_color_transparent_click"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
 
             <ImageView
                 android:id="@+id/main_user_enter_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_launcher"/>
+                android:src="@drawable/activity_login_avatar"/>
 
             </RelativeLayout>
 
@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="管理书籍"
+            android:text="添加书籍"
             android:textSize="16sp"
             android:textColor="#333333"
             android:layout_centerInParent="true"/>
@@ -105,7 +105,7 @@
                     android:layout_centerInParent="true"
                     android:textSize="16sp"
                     android:textColor="#333333"
-                    android:text="搜索书籍"/>
+                    android:text="搜索"/>
 
             </RelativeLayout>
 
@@ -128,7 +128,42 @@
                     android:layout_centerInParent="true"
                     android:textSize="16sp"
                     android:textColor="#333333"
-                    android:text="添加书籍"/>
+                    android:text="书库"/>
+
+            </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/book_delete_hint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="#88000000">
+
+        <LinearLayout
+            android:id="@+id/book_delete_hint_inside_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/backgrounnd_color_black_click">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="16sp"
+                    android:textColor="@color/light_red"
+                    android:text="删除该书？（一旦删除，将无法恢复）"/>
 
             </RelativeLayout>
 
@@ -138,7 +173,7 @@
                 android:background="#aaaaaa"/>
 
             <RelativeLayout
-                android:id="@+id/main_manage_delete_book"
+                android:id="@+id/book_delete_sure"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
@@ -151,12 +186,35 @@
                     android:layout_centerInParent="true"
                     android:textSize="16sp"
                     android:textColor="#333333"
-                    android:text="删除书籍"/>
+                    android:text="确定"/>
 
             </RelativeLayout>
 
-            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#aaaaaa"/>
 
-        </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/book_delete_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/backgrounnd_color_black_click">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:text="取消"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>

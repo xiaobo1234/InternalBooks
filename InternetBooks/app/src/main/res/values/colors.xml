@@ -8,5 +8,6 @@
     <color name="background_manage_hint_before_click">#dddddd</color>
     <color name="background_manage_hint_clicked">#aaaaaa</color>
     <color name="main_book_name">#333333</color>
+    <color name="light_red">#ff0099</color>
 
 </resources>
