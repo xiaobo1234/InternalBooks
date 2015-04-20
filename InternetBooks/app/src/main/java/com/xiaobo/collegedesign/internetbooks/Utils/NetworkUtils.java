@@ -5,8 +5,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 
-import com.xiaobo.collegedesign.internetbooks.Application.ApplicationRunTime;
-
 /**
  * Created by chenhong on 15/1/12.
  */

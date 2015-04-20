@@ -34,4 +34,5 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.2.0'
     compile 'io.realm:realm-android:0.80.0'
     compile 'com.android.support:support-v4:22.0.0'
+    compile 'com.android.support:appcompat-v7:21.0.0'
 }

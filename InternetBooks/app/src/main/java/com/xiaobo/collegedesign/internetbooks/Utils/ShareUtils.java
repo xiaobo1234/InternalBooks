@@ -3,8 +3,6 @@ package com.xiaobo.collegedesign.internetbooks.Utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.xiaobo.collegedesign.internetbooks.Application.ApplicationRunTime;
-
 /**
  * Created by chenhong on 15/1/9.
  */

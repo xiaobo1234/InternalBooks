@@ -1,8 +1,6 @@
 package com.xiaobo.collegedesign.internetbooks.Utils;
 
 import android.util.Log;
-import com.xiaobo.collegedesign.internetbooks.Application.ApplicationRunTime;
-import com.xiaobo.collegedesign.internetbooks.R;
 
 /**
  * Created by xiaobo on 15/1/9.

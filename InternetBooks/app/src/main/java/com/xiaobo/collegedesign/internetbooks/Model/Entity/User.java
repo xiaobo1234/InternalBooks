@@ -7,36 +7,18 @@ import io.realm.RealmObject;
  */
 public class User extends RealmObject {
 
-    //用户名
-    private String user_name;
 
-    //用户性别
-    private String user_gender;
+    public String name;
 
-    //用户年龄
-    private String user_age;
+    public String user_id;
 
-    public String getUser_name() {
-        return user_name;
-    }
+    public String last_login_at;
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
-    }
+    public Access_token access_token;
 
-    public String getUser_gender() {
-        return user_gender;
-    }
+    public static class Access_token{
+        public String token;
+        public String key;
 
-    public void setUser_gender(String user_gender) {
-        this.user_gender = user_gender;
-    }
-
-    public String getUser_age() {
-        return user_age;
-    }
-
-    public void setUser_age(String user_age) {
-        this.user_age = user_age;
     }
 }

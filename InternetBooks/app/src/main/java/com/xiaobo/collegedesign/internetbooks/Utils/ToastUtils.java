@@ -3,8 +3,6 @@ package com.xiaobo.collegedesign.internetbooks.Utils;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.xiaobo.collegedesign.internetbooks.Application.ApplicationRunTime;
-
 /**
  * Created by chen on 14-8-16.
  */
